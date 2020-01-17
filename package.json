@@ -1,0 +1,22 @@
+{
+  "name": "essential-md",
+  "version": "0.0.0",
+  "description": "An essential markdown-like utility for console logs",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc node test.js"
+  },
+  "keywords": [
+    "markdown",
+    "console",
+    "essential"
+  ],
+  "author": "Andrea Giammarchi",
+  "license": "ISC",
+  "devDependencies": {
+    "coveralls": "^3.0.9",
+    "nyc": "^15.0.0"
+  }
+}
