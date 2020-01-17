@@ -1,5 +1,5 @@
-/**
- * (c) 2020 Andrea Giammarchi (ISC)
+/*!
+ * (c) 2020, Andrea Giammarchi (ISC)
  */
 
 const {
