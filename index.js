@@ -25,7 +25,7 @@ const maybeTagOrStr = (...args) => {
   return args.join('');
 };
 
-// main
+// emd transformer
 const emd = (...args) => {
   const code = [];
   const hide = (_, $1, $2, $3) => `\x01${
@@ -48,26 +48,29 @@ const emd = (...args) => {
 
     // * list, > quote
     [/^([ \t]+)[*+-.]([ \t]+)/gm, '$1\u2022$2'],
-    [/^[ \t]*>([ \t]?)/gm, '\x1B[7m \x1B[0m ']
-  ]
-  .reduce((s, [re, place]) => s.replace(re, place), maybeTagOrStr(...args))
-  // restore code after parsing
-  .replace(/\x01(\d+)/g, (_, $1) => code[$1]);
-};
+    [/^[ \t]*>([ \t]?)/gm, '\x1B[7m \x1B[0m '],
 
-// colors
-const blue = (...args) => `\x1B[34m${maybeTagOrStr(...args)}\x1B[0m`;
-const green = (...args) => `\x1B[32m${maybeTagOrStr(...args)}\x1B[0m`;
-const red = (...args) => `\x1B[31m${maybeTagOrStr(...args)}\x1B[0m`;
-const yellow = (...args) => `\x1B[33m${maybeTagOrStr(...args)}\x1B[0m`;
+    // restore code after parsing
+    [/\x01(\d+)/g, (_, $1) => code[$1]]
+  ]
+  .reduce((s, [re, place]) => s.replace(re, place), maybeTagOrStr(...args));
+};
 
 // log
 const log = (...args) => $log(emd(...args));
 
+// colors
+const color = c => (...args) => `\x1B[${c}m${maybeTagOrStr(...args)}\x1B[0m`;
+const blue = color(34);
+const yellow = color(33);
+const green = color(32);
+const red = color(31);
+
 // extras
-const ok = (...args) => log(green(' **OK** ') + maybeTagOrStr(...args));
-const error = (...args) => $error(emd(red(' **Error** ') + maybeTagOrStr(...args)));
-const info = (...args) => $info(emd(blue(' **Info** ') + maybeTagOrStr(...args)));
-const warn = (...args) => $warn(emd(yellow(' **Warning** ') + maybeTagOrStr(...args)));
+const extra = (fn, prefix) => (...args) => fn(emd(prefix + maybeTagOrStr(...args)));
+const error = extra($error, red(' **Error** '));
+const info = extra($info, blue(' **Info** '));
+const ok = extra($log, green(' **OK** '));
+const warn = extra($warn, yellow(' **Warning** '));
 
 module.exports = {emd, log, error, info, ok, warn, blue, green, red, yellow};
