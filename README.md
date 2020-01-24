@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/WebReflection/essential-md.svg?branch=master)](https://travis-ci.com/WebReflection/essential-md) [![Coverage Status](https://coveralls.io/repos/github/WebReflection/essential-md/badge.svg?branch=master)](https://coveralls.io/github/WebReflection/essential-md?branch=master)
 
+<sup>**Social Media Photo by [Anastasiia Kamil](https://unsplash.com/@nastyakamil) on [Unsplash](https://unsplash.com/)**</sup>
+
 A minimalistic markdown like utility to log:
 
   * headers
