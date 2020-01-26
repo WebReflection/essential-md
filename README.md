@@ -15,6 +15,7 @@ A minimalistic markdown like utility to log:
   * quotes
   * multi or single line code, to keep its content unaffected
   * clear 1 up to N previous lines
+  * prompt to ask questions (for anything fancier, see [prompts](https://www.npmjs.com/package/prompts))
 
 ## API
 
@@ -26,6 +27,7 @@ Every exported method can be used either as function or as template literal tag.
   * `info` to `console.info` a bold blue `Info:` in front of the message
   * `warn` to `console.warn` a bold yellow `Warning:` in front of the message
   * `clear` to clear any previous logged line (`clear(1)`, `clear(7)`, ... default `1`)
+  * `prompt` to ask questions (`prompt('What is your name?').then(...)`)
   * `ok` to `console.log` a bold green `OK:` in front of the message
   * `blue`, `green`, `red`, and `yellow`, to easily color some part of the text
 

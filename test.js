@@ -1,4 +1,4 @@
-const {log, error, info, ok, warn, clear} = require('./index.js');
+const {log, error, info, ok, warn, clear, prompt} = require('./index.js');
 
 log('Start');
 log('nope');
@@ -39,3 +39,5 @@ And this is some quote:
 > quote **line**
 > **quote** line
 `);
+
+prompt('Are *you* satisfied?\n').then(value => console.log('Answer:', value));

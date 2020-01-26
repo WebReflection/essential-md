@@ -2,6 +2,8 @@
  * (c) 2020, Andrea Giammarchi (ISC)
  */
 
+const readline = require('readline');
+
 const {
   log: $log,
   error: $error,
@@ -72,9 +74,29 @@ const error = extra($error, red(' **Error** '));
 const info = extra($info, blue(' **Info** '));
 const ok = extra($log, green(' **OK** '));
 const warn = extra($warn, yellow(' **Warning** '));
+
+// utils
 const clear = (lines = 1) => {
   while (lines--)
     log('\x1B[2A');
 };
 
-module.exports = {emd, log, error, info, ok, warn, clear, blue, green, red, yellow};
+const prompt = (question) => new Promise($ => {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: true
+  });
+  rl.question('\x1B[2K' + emd(question), answer => {
+    rl.close();
+    clear();
+    $(answer);
+  });
+});
+
+module.exports = {
+  emd,
+  log, error, info, ok, warn,
+  clear, prompt,
+  blue, green, red, yellow
+};
