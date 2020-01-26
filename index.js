@@ -57,7 +57,7 @@ const emd = (...args) => {
 };
 
 // log
-const log = (...args) => $log(emd(...args));
+const log = (...args) => $log('\x1B[2K' + emd(...args));
 
 // colors
 const color = c => (...args) => `\x1B[${c}m${maybeTagOrStr(...args)}\x1B[0m`;
@@ -67,10 +67,14 @@ const green = color(32);
 const red = color(31);
 
 // extras
-const extra = (fn, prefix) => (...args) => fn(emd(prefix + maybeTagOrStr(...args)));
+const extra = (fn, prefix) => (...args) => fn(emd('\x1B[2K' + prefix + maybeTagOrStr(...args)));
 const error = extra($error, red(' **Error** '));
 const info = extra($info, blue(' **Info** '));
 const ok = extra($log, green(' **OK** '));
 const warn = extra($warn, yellow(' **Warning** '));
+const clear = (lines = 1) => {
+  while (lines--)
+    log('\x1B[2A');
+};
 
-module.exports = {emd, log, error, info, ok, warn, blue, green, red, yellow};
+module.exports = {emd, log, error, info, ok, warn, clear, blue, green, red, yellow};

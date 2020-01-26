@@ -1,12 +1,15 @@
-const {log, error, info, ok, warn} = require('./index.js');
+const {log, error, info, ok, warn, clear} = require('./index.js');
 
-log(1, 2, 3);
+log('Start');
+log('nope');
+clear();
+log('ok');
 error(1, 2, 3);
 info(1, 2, 3);
 ok(1, 2, 3);
 warn(1, 2, 3);
 
-log`${1}${2}${3}`;
+log`${'o'}${'k'}`;
 error`${1}${2}${3}`;
 info`${1}${2}${3}`;
 ok`${1}${2}${3}`;

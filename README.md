@@ -14,6 +14,7 @@ A minimalistic markdown like utility to log:
   * lists of items
   * quotes
   * multi or single line code, to keep its content unaffected
+  * clear 1 up to N previous lines
 
 ## API
 
@@ -24,6 +25,7 @@ Every exported method can be used either as function or as template literal tag.
   * `error` to `console.error` a bold red `Error:` in front of the message
   * `info` to `console.info` a bold blue `Info:` in front of the message
   * `warn` to `console.warn` a bold yellow `Warning:` in front of the message
+  * `clear` to clear any previous logged line (`clear(1)`, `clear(7)`, ... default `1`)
   * `ok` to `console.log` a bold green `OK:` in front of the message
   * `blue`, `green`, `red`, and `yellow`, to easily color some part of the text
 
