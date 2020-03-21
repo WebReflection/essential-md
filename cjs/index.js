@@ -1,8 +1,9 @@
+'use strict';
 /*!
  * (c) 2020, Andrea Giammarchi (ISC)
  */
 
-const readline = require('readline');
+const readline = (m => m.__esModule ? /* istanbul ignore next */ m.default : /* istanbul ignore next */ m)(require('readline'));
 
 const {
   log: $log,
@@ -57,29 +58,40 @@ const emd = (...args) => {
   ]
   .reduce((s, [re, place]) => s.replace(re, place), maybeTagOrStr(...args));
 };
+exports.emd = emd;
 
 // log
 const log = (...args) => $log('\x1B[2K' + emd(...args));
+exports.log = log;
 
 // colors
 const color = c => (...args) => `\x1B[${c}m${maybeTagOrStr(...args)}\x1B[0m`;
 const blue = color(34);
+exports.blue = blue;
 const yellow = color(33);
+exports.yellow = yellow;
 const green = color(32);
+exports.green = green;
 const red = color(31);
+exports.red = red;
 
 // extras
 const extra = (fn, prefix) => (...args) => fn(emd('\x1B[2K' + prefix + maybeTagOrStr(...args)));
 const error = extra($error, red(' **Error** '));
+exports.error = error;
 const info = extra($info, blue(' **Info** '));
+exports.info = info;
 const ok = extra($log, green(' **OK** '));
+exports.ok = ok;
 const warn = extra($warn, yellow(' **Warning** '));
+exports.warn = warn;
 
 // utils
 const clear = (lines = 1) => {
   while (lines--)
     log('\x1B[2A');
 };
+exports.clear = clear;
 
 const prompt = (question) => new Promise($ => {
   const rl = readline.createInterface({
@@ -93,10 +105,4 @@ const prompt = (question) => new Promise($ => {
     $(answer);
   });
 });
-
-module.exports = {
-  emd,
-  log, error, info, ok, warn,
-  clear, prompt,
-  blue, green, red, yellow
-};
+exports.prompt = prompt;

@@ -34,7 +34,8 @@ Every exported method can be used either as function or as template literal tag.
 ## Examples
 
 ```js
-const {log, green, red} = require('essential-md');
+import {log, green, red} from 'essential-md';
+// const {log, green, red} = require('essential-md');
 
 log`
 # This is a header

@@ -1,4 +1,4 @@
-const {log, error, info, ok, warn, clear, prompt} = require('./index.js');
+const {log, error, info, ok, warn, clear, prompt} = require('../cjs');
 
 log('Start');
 log('nope');

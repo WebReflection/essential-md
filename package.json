@@ -2,11 +2,12 @@
   "name": "essential-md",
   "version": "0.2.1",
   "description": "An essential markdown-like utility for console logs",
-  "type": "commonjs",
-  "main": "index.js",
+  "main": "./cjs/index.js",
   "scripts": {
+    "build": "npm run cjs && npm run test",
+    "cjs": "ascjs esm cjs",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "test": "yes 'Yes' | nyc node test.js"
+    "test": "yes 'Yes' | nyc node test/index.js"
   },
   "keywords": [
     "markdown",
@@ -16,7 +17,22 @@
   "author": "Andrea Giammarchi",
   "license": "ISC",
   "devDependencies": {
+    "ascjs": "^3.1.2",
     "coveralls": "^3.0.11",
     "nyc": "^15.0.0"
-  }
+  },
+  "module": "./esm/index.js",
+  "type": "module",
+  "exports": {
+    "import": "./esm/index.js",
+    "default": "./cjs/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebReflection/essential-md.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebReflection/essential-md/issues"
+  },
+  "homepage": "https://github.com/WebReflection/essential-md#readme"
 }
