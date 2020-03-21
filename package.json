@@ -16,7 +16,7 @@
   "author": "Andrea Giammarchi",
   "license": "ISC",
   "devDependencies": {
-    "coveralls": "^3.0.9",
+    "coveralls": "^3.0.11",
     "nyc": "^15.0.0"
   }
 }
