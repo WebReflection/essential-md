@@ -1,6 +1,6 @@
 {
   "name": "essential-md",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "An essential markdown-like utility for console logs",
   "main": "./cjs/index.js",
   "scripts": {
