@@ -31,8 +31,8 @@ const maybeTagOrStr = (...args) => {
 // emd transformer
 const emd = (...args) => {
   const code = [];
-  const hide = (_, $1, $2, $3) => `\x01${
-    code.push($1 + ($2 === '`' ? $3 : $3.replace(trim, ''))) - 1
+  const hide = (_, $1, $2, $3) => $1 + `\x01${
+    code.push($2 === '`' ? $3 : $3.replace(trim, '')) - 1
   }`;
   return [
     // drop `code` before parsing

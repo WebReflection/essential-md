@@ -1,5 +1,8 @@
 const {log, error, info, ok, warn, clear, prompt} = require('../cjs');
 
+log('*`code`*');
+log('`code`');
+
 log('Start');
 log('nope');
 clear();
