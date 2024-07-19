@@ -3,8 +3,6 @@
  * (c) 2020, Andrea Giammarchi (ISC)
  */
 
-const readline = (m => m.__esModule ? /* istanbul ignore next */ m.default : /* istanbul ignore next */ m)(require('readline'));
-
 const {
   log: $log,
   error: $error,
@@ -93,7 +91,8 @@ const clear = (lines = 1) => {
 };
 exports.clear = clear;
 
-const prompt = (question) => new Promise($ => {
+const prompt = (question) => new Promise(async $ => {
+  const { default: readline } = await import('readline');
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,

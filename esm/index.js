@@ -2,8 +2,6 @@
  * (c) 2020, Andrea Giammarchi (ISC)
  */
 
-import readline from 'readline';
-
 const {
   log: $log,
   error: $error,
@@ -81,7 +79,8 @@ export const clear = (lines = 1) => {
     log('\x1B[2A');
 };
 
-export const prompt = (question) => new Promise($ => {
+export const prompt = (question) => new Promise(async $ => {
+  const { default: readline } = await import('readline');
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
